@@ -3,7 +3,7 @@ volumes:
   gif-db:
 services:
   app:
-    image: chriix/cs2304-gif-collection
+    image: chriix/cs2304-gif-collection:fix-healthcheck
     command: npm run dev
     working_dir: /usr/local/app
     volumes:
