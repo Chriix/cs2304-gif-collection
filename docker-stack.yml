@@ -1,6 +1,4 @@
 version: "3.8"
-volumes: 
-  gif-db:
 services:
   app:
     image: chrisbonner/gif-collection
@@ -9,13 +7,6 @@ services:
       - "3000:3000"
     links:
       - "db:mongo"
-    deploy:
-      replicas: 3
-      placement:
-        contraints:
-          - "node.role==worker"
-    update_config:
-    delay: 10s
   db:
     image: mongo:4.4
     volumes:
