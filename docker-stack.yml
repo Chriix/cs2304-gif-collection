@@ -3,13 +3,9 @@ volumes:
   gif-db:
 services:
   app:
-    image: chrisbonner/gif-collection:fix-healthcheck
-    command: npm run dev
-    working_dir: /usr/local/app
-    volumes:
-      - ./:/usr/local/app
+    image: chrisbonner/gif-collection
     ports:
-      - "3000:3000"
+      - 3000:3000
     links:
       - "db:mongo"
   db:
