@@ -4,6 +4,7 @@ volumes:
 services:
   app:
     image: chrisbonner/gif-collection
+    working_dir: /usr/local/app
     ports:
       - 3000:3000
     links:
