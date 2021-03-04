@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   app:
-    image: chrisbonner/gif-collection
+    image: chrisbonner/gif-collection:feature-branch
     ports:
       - "3000:3000"
   db:
