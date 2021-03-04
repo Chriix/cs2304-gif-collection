@@ -6,6 +6,8 @@ services:
     image: mikesir87/gif-collection
     ports:
       - 3000:3000
+    links:
+      - "db:mongo"
   db:
     image: mongo:4.4
     volumes:
