@@ -1,7 +1,7 @@
 const express = require("express");
 
 const MongoClient = require("mongodb").MongoClient;
-const MONGO_URL = "mongodb://mongo:27017"
+const MONGO_URL = "mongodb://db:27017"
 // Change this to your own greeting
 const MY_MESSAGE = "\"No, I'm Chrix!\"";
 
