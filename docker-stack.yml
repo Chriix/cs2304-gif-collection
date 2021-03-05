@@ -6,8 +6,6 @@ services:
       - 3000:3000
   db:
     image: mongo:4.4
-    volumes:
-      - gif-db:/data/db
   mongo-express:
     image: mongo-express
     ports:
@@ -17,6 +15,3 @@ services:
       - ME_CONFIG_MONGODB_PORT=27017 
     depends_on:
       - db
-
-volumes: 
-  gif-db:
