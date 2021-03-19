@@ -13,9 +13,9 @@ services:
       - grafana-storage:/var/lib/grafana
     ports:
       - 3080:3000
-  volumes:
-    prometheus-data:
-    grafana-storage:
+volumes:
+  prometheus-data:
+  grafana-storage:
 networks:
   default:
     name: monitoring
