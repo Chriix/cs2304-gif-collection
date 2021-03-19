@@ -1,6 +1,4 @@
 version: "3.8"
-volumes: 
-  gif-db:
 services:
   app:
     image: chrisbonner/gif-collection
@@ -26,6 +24,8 @@ services:
       - ME_CONFIG_MONGODB_PORT=27017 
     depends_on:
       - db
+  volumes: 
+    gif-db:
 networks:
   monitoring:
     external: true

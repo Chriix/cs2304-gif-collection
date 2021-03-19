@@ -7,8 +7,15 @@ services:
     volumes:
       - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus-data:/prometheus
-volumes:
-  prometheus-data:
+  grafana:
+    image: grafana/grafana
+    volumes:
+      - grafana-storage:/var/lib/grafana
+    ports:
+      - 3080:3000
+  volumes:
+    prometheus-data:
+    grafana-storage:
 networks:
   default:
     name: monitoring
