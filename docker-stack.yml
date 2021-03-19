@@ -1,14 +1,16 @@
 version: "3.8"
+volumes: 
+  gif-db:
 services:
   app:
     image: chrisbonner/gif-collection
     ports:
       - 3000:3000
+    networks:
+      - default
+      - monitoring
     deploy:
       replicas: 3
-      placement:
-        constraints:
-          - "node.role==worker"
       update_config:
         delay: 10s
   db:
@@ -24,6 +26,6 @@ services:
       - ME_CONFIG_MONGODB_PORT=27017 
     depends_on:
       - db
-
-volumes: 
-  gif-db:
+networks:
+  monitoring:
+    external: true
