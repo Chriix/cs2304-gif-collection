@@ -9,23 +9,23 @@ services:
       - proxy
     deploy:
       labels:
-        traefik.http.routers.visualizer.rule: Host('prometheus.localhost')
-        traefik.http.routers.visualizer.loadbalancer.server.port: 9090
+        traefik.http.routers.prometheus.rule: Host('prometheus.localhost')
+        traefik.http.routers.prometheus.loadbalancer.server.port: 9090
   grafana:
     image: grafana/grafana
     volumes:
       - grafana-storage:/var/lib/grafana
-    networks:
+     networks:
       - proxy
     deploy:
       labels:
-        traefik.http.routers.visualizer.rule: Host('grafana.localhost')
-        traefik.http.routers.visualizer.loadbalancer.server.port: 3000
+        traefik.http.routers.grafana.rule: Host('grafana.localhost')
+        traefik.http.routers.grafana.loadbalancer.server.port: 3000
 volumes:
   prometheus-data:
   grafana-storage:
 networks:
-  default:
-    name: monitoring
   proxy:
     external: true
+  default:
+    name: monitoring
