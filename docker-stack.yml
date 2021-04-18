@@ -8,6 +8,10 @@ services:
       - default
       - monitoring
       - proxy
+    environment:
+      MONGO_CONFIG_FILE: /run/secrets/config.json
+    secrets:
+      - config.json
     deploy:
       replicas: 3
       update_config:
@@ -33,6 +37,11 @@ services:
         traefik.http.services.mongo-express.loadbalancer.server.port: 8081
     depends_on:
       - db
+
+secrets:
+  config.json:
+    external: true
+
 networks:
   monitoring:
     external: true
