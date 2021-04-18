@@ -1,3 +1,4 @@
+const fs = require("fs");
 const express = require("express");
 const prometheusClient = require("prom-client");
 const prometheusMiddleware = require("express-prometheus-middleware");
@@ -13,12 +14,17 @@ const mongoQuerySummary = new prometheusClient.Summary({
 });
 
 const MongoClient = require("mongodb").MongoClient;
-const MONGO_URL = "mongodb://db:27017"
+function getConnectionString() {
+  const configLocation = process.env.MONGO_CONFIG_FILE || "/run/secrets/mongo-config.json";
+  if (!fs.existsSync(configLocation))
+    throw new Error("No secret config found");
+  return require(configLocation).connectionString;
+}
 // Change this to your own greeting
-const MY_MESSAGE = "\"No, I'm Chrix!\"";
+const MY_MESSAGE = process.env.CUSTOM_MESSAGE || "No message provided";
 
 // NOTE - add the next few lines
-MongoClient.connect(MONGO_URL, (err, db) => {
+MongoClient.connect(getConnectionString(), (err, db) => {
   if (err) throw err;
 
   console.log("Database has connected!");
