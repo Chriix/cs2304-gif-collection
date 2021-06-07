@@ -10,8 +10,8 @@ services:
       - proxy
     environment:
       MONGO_CONFIG_FILE: /run/secrets/config.json
-    secrets:
-      - config.json
+    # secrets:
+    #   - config.json
     deploy:
       replicas: 3
       update_config:
@@ -38,9 +38,9 @@ services:
     depends_on:
       - db
 
-secrets:
-  config.json:
-    external: true
+# secrets:
+#   config.json:
+#     external: true
 
 networks:
   monitoring:

@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gif-app
+spec:
+  selector:
+    matchLabels:
+      app: gif-app
+  template:
+    metadata:
+      labels:
+        app: gif-app
+    spec:
+      containers:
+        - name: gif-app
+          image: chrisbonner/gif-collection
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 3000
+          volumeMounts:
+            - name: config
+              mountPath: /run/secrets/mongo-config
+          env:
+            - name: MONGO_CONFIG_FILE
+              value: /run/secrets/mongo-config/config.json
+      volumes:
+        - name: config
+          secret:
+            secretName: mongo-config
